@@ -176,11 +176,11 @@ footer.f .by{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 var H={"mo": [["09:00", "24:00"]], "tu": [["09:00", "24:00"]], "we": [["09:00", "24:00"]], "th": [["09:00", "24:00"]], "fr": [["09:00", "24:00"]], "sa": [["09:00", "24:00"]], "su": [["09:00", "24:00"]]},D=['su','mo','tu','we','th','fr','sa'],RU={mo:'пн',tu:'вт',we:'ср',th:'чт',fr:'пт',sa:'сб',su:'вс'};
 var t=new Date(Date.now()+7*3600e3),dw=t.getUTCDay(),day=D[dw],mins=t.getUTCHours()*60+t.getUTCMinutes();
 function m(s){var p=s.split(':');return +p[0]*60+ +p[1];}
-function st(){var ps=H[D[(dw+6)%7]];if(ps)for(var i=0;i<ps.length;i++){var a=m(ps[i][0]),b=m(ps[i][1]);if(b<=a&&mins<b)return{o:1,u:ps[i][1]};}
- var s=H[day];if(s)for(var i=0;i<s.length;i++){var a=m(s[i][0]),b=m(s[i][1]);if(b<=a)b+=1440;if(mins>=a&&mins<b)return{o:1,u:s[i][1]};}
+function st(){var ps=H[D[(dw+6)%7]];if(ps)for(var i=0;i<ps.length;i++){var a=m(ps[i][0]),b=m(ps[i][1]);if(b<=a&&mins<b)return{o:1,u:ps[i][1],f:ps[i][0]};}
+ var s=H[day];if(s)for(var i=0;i<s.length;i++){var a=m(s[i][0]),b=m(s[i][1]);if(b<=a)b+=1440;if(mins>=a&&mins<b)return{o:1,u:s[i][1],f:s[i][0]};}
  for(var k=0;k<8;k++){var dd=D[(dw+k)%7],ss=H[dd];if(!ss||!ss.length)continue;for(var j=0;j<ss.length;j++){if(k>0||m(ss[j][0])>mins)return{o:0,n:(k==0?'сегодня в ':k==1?'завтра в ':RU[dd]+' в ')+ss[j][0]};}}return null;}
 var r=st(),n=document.querySelector('[data-now]');
-if(n&&r){n.className='now '+(r.o?'open':'closed');n.querySelector('[data-now-t]').textContent=r.o?(r.u=='24:00'?'Открыто круглосуточно':'Сейчас открыто до '+r.u):'Сейчас закрыто';n.querySelector('[data-now-u]').textContent=r.o?'Ждём вас, улица Петра Осминина, 7':'Откроемся '+r.n;}
+if(n&&r){n.className='now '+(r.o?'open':'closed');n.querySelector('[data-now-t]').textContent=r.o?(r.u=='24:00'&&r.f=='00:00'?'Открыто круглосуточно':'Сейчас открыто до '+(r.u=='24:00'?'полуночи':r.u)):'Сейчас закрыто';n.querySelector('[data-now-u]').textContent=r.o?'Ждём вас, улица Петра Осминина, 7':'Откроемся '+r.n;}
 document.querySelectorAll('.hrs tr').forEach(function(x){if((x.getAttribute('data-days')||'').split(' ').indexOf(day)>=0)x.className='today';});
 })();</script>
 </body></html>
