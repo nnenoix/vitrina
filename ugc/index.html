@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faceless SaaS & App Demos — Adrian Nowak</title>
+<meta name="description" content="Short demo videos for software and apps: screen recording, English voiceover, word-by-word captions. No face on camera. 9:16 for TikTok, Reels and Shorts, 16:9 for YouTube and landing pages.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #151312; --ink: #efe7da; --mute: #a79e91; --gold: #d6b478; --line: #2b2725; --card: #0e0d0c; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font: 300 18px/1.6 "Jost", system-ui, sans-serif; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+  header { padding: 88px 0 56px; border-bottom: 1px solid var(--line); }
+  h1 { font: 600 clamp(44px, 7vw, 84px)/1.02 "Cormorant Garamond", serif; letter-spacing: .01em; }
+  .lead { max-width: 680px; margin-top: 24px; color: var(--mute); font-size: 20px; }
+  .price { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px 36px; font-weight: 400; }
+  .price b { color: var(--gold); font-weight: 500; }
+  .demos { padding: 56px 0 24px; display: grid; gap: 56px; }
+  .demo { display: grid; grid-template-columns: 1fr 2.2fr; gap: 24px; align-items: start; }
+  .demo h2 { font: 600 34px/1.15 "Cormorant Garamond", serif; color: var(--gold); margin-bottom: 10px; }
+  .demo p { color: var(--mute); font-size: 17px; }
+  .demo .meta { margin-top: 14px; font-size: 15px; color: var(--mute); }
+  .players { display: grid; grid-template-columns: minmax(0, 9fr) minmax(0, 16fr); gap: 16px; }
+  .player { background: var(--card); overflow: hidden; }
+  .player video { display: block; width: 100%; height: auto; background: #000; }
+  .player span { display: block; padding: 8px 10px; font-size: 14px; color: var(--mute); }
+  .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 48px 0 72px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 32px; }
+  .how h3 { font: 600 28px/1.2 "Cormorant Garamond", serif; margin-bottom: 8px; color: var(--gold); }
+  .how p { color: var(--mute); font-size: 17px; }
+  footer { padding: 40px 0 64px; color: var(--mute); font-size: 16px; }
+  footer a { color: var(--ink); }
+  @media (max-width: 860px) {
+    header { padding: 56px 0 40px; }
+    .demo { grid-template-columns: 1fr; }
+    .players { grid-template-columns: 1fr; }
+    .how { grid-template-columns: 1fr; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <h1>Faceless demos<br>for apps & SaaS</h1>
+  <p class="lead">A screen recording of your product, a clear English voiceover and word-by-word captions. No face on camera: the product is the star. I write the script, you approve it, then I record. 9:16 for TikTok, Reels and Shorts, 16:9 for YouTube and your landing page.</p>
+  <div class="price"><span>15–30 s short demo — <b>$60</b></span><span>30–60 s in both formats, 2 hooks — <b>$120</b></span><span>60–90 s or three cuts + 90 days of ad rights — <b>$250</b></span></div>
+</header>
+
+<main class="wrap">
+  <section class="demos">
+    <article class="demo">
+      <div>
+        <h2>Squoosh</h2>
+        <p>Image compression in the browser, by Google Chrome Labs. The hook is a real number read from the screen: a 3.3 MB photo becomes an 848 kB WebP, 74 percent smaller, with a live before/after slider.</p>
+        <p class="meta">39 s · problem → tool → result → CTA</p>
+      </div>
+      <div class="players">
+        <div class="player"><video controls preload="metadata" playsinline poster="squoosh_9x16.jpg" src="squoosh_9x16.mp4"></video><span>9:16 · TikTok / Reels / Shorts</span></div>
+        <div class="player"><video controls preload="metadata" playsinline poster="squoosh_16x9.jpg" src="squoosh_16x9.mp4"></video><span>16:9 · YouTube / landing page</span></div>
+      </div>
+    </article>
+
+    <article class="demo">
+      <div>
+        <h2>Snapture</h2>
+        <p>An on-device OCR web app: photo of a business card → name, phone and email fields → saved contact in three seconds. The vertical cut is recorded natively in a phone layout with a touch cursor, not a crop.</p>
+        <p class="meta">28 s · mobile-first demo</p>
+      </div>
+      <div class="players">
+        <div class="player"><video controls preload="metadata" playsinline poster="snapture_9x16.jpg" src="snapture_9x16.mp4"></video><span>9:16 · native phone layout</span></div>
+        <div class="player"><video controls preload="metadata" playsinline poster="snapture_16x9.jpg" src="snapture_16x9.mp4"></video><span>16:9 · desktop</span></div>
+      </div>
+    </article>
+
+    <article class="demo">
+      <div>
+        <h2>Excalidraw</h2>
+        <p>A whiteboard app: draw two boxes, connect them with an arrow, share a live link, export to PNG. Shows that canvas and drawing tools can be driven smoothly on screen, not only forms and buttons.</p>
+        <p class="meta">29 s · canvas app</p>
+      </div>
+      <div class="players">
+        <div class="player"><video controls preload="metadata" playsinline poster="excalidraw_9x16.jpg" src="excalidraw_9x16.mp4"></video><span>9:16</span></div>
+        <div class="player"><video controls preload="metadata" playsinline poster="excalidraw_16x9.jpg" src="excalidraw_16x9.mp4"></video><span>16:9</span></div>
+      </div>
+    </article>
+
+    <article class="demo">
+      <div>
+        <h2>Coolors</h2>
+        <p>A palette generator: lock a colour, generate the rest, pick a shade, copy the HEX, export. A fast feature walkthrough with the UI doing the talking.</p>
+        <p class="meta">27 s · feature walkthrough</p>
+      </div>
+      <div class="players">
+        <div class="player"><video controls preload="metadata" playsinline poster="coolors_9x16.jpg" src="coolors_9x16.mp4"></video><span>9:16</span></div>
+        <div class="player"><video controls preload="metadata" playsinline poster="coolors_16x9.jpg" src="coolors_16x9.mp4"></video><span>16:9</span></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="how">
+    <div><h3>What I need from you</h3><p>A demo account or a free plan, one sentence about your customer, and the one thing you want people to do after watching.</p></div>
+    <div><h3>What you get</h3><p>A hook in the first 2 seconds, then the problem, your product solving it, and a call to action. Burned-in captions, zooms on the clicks that matter, an AI-generated voiceover (calm, natural English) so script changes are quick. Delivery in 3–5 days.</p></div>
+    <div><h3>Good fit</h3><p>Web apps, browser extensions, AI tools, productivity and design tools, no-code builders. Anything that lives in a browser or on a phone screen.</p></div>
+  </section>
+</main>
+
+<footer class="wrap">
+  Adrian Nowak · <a href="mailto:nowakadrian818@gmail.com">nowakadrian818@gmail.com</a> · All demos on this page are unpaid portfolio pieces about public tools; product names belong to their owners. The voiceover is AI-generated and is disclosed as such to every client.
+</footer>
+</body>
+</html>
