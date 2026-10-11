@@ -99,6 +99,8 @@ a{color:inherit}
 @media (max-width:720px){
   .nav a{display:none}
   .hero{min-height:560px}
+  .hero h1{font-size:9.6vw}
+  .logo{font-size:15px}
   .hero-in{padding:70px 20px}
   .about{padding:60px 0 24px}
   .search{min-width:0;width:100%}
