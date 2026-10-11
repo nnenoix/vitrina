@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -91,24 +91,21 @@
     <button class="modal-x" data-close aria-label="Закрыть">×</button>
     <h3>Предложить рекорд</h3>
     <p class="muted small">Заявка не публикуется сразу: её получит администратор и добавит участника после проверки.</p>
-    <form class="rec-form" action="https://formsubmit.co/nowakadrian818@gmail.com" method="POST" enctype="multipart/form-data">
-      <input type="hidden" name="_subject" value="Книга достижений: новая заявка">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" class="next-url" value="">
-      <input type="text" name="_honey" style="display:none">
-      <label>ФИО<input name="ФИО" required maxlength="120"></label>
+    <form class="rec-form" novalidate>
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <label>ФИО<input name="fio" required maxlength="120"></label>
       <label>Категория
-        <select name="Категория" required>
+        <select name="cat" required>
           <option value="">Выберите…</option>
           <option>Академические достижения</option>
           <option>Спортивные рекорды</option>
           <option>Творчество и активизм</option>
         </select>
       </label>
-      <label>Описание рекорда<textarea name="Описание" rows="4" required maxlength="2000" placeholder="Что, где и когда: название олимпиады или соревнования, результат"></textarea></label>
-      <label>Ссылка на видео или документ<input name="Ссылка" type="url" placeholder="https://"></label>
-      <label>Или файл (фото, диплом, до 5 МБ)<input name="Файл" type="file" accept="image/*,.pdf"></label>
+      <label>Описание рекорда<textarea name="desc" rows="4" required maxlength="2000" placeholder="Что, где и когда: название олимпиады или соревнования, результат"></textarea></label>
+      <label>Ссылка на видео или документ<input name="link" type="url" placeholder="https://"></label>
+      <label>Или файл (фото, диплом, до 5 МБ)<input name="file" type="file" accept="image/*,.pdf"></label>
+      <p class="form-err" hidden></p>
       <button class="btn btn-gold btn-wide" type="submit">Отправить заявку</button>
     </form>
   </div>
@@ -116,6 +113,6 @@
 
 <div class="toast" id="toast" hidden>Спасибо! Заявка отправлена администратору.</div>
 
-<script src="app.js?v=3"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>

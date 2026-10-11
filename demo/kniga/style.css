@@ -109,3 +109,5 @@ a{color:inherit}
   .person-body{padding:22px}
   .modal-box{padding:24px}
 }
+.form-err{margin:0;color:#c0392b;font-weight:600;font-size:14px}
+.rec-form button[disabled]{opacity:.7;cursor:wait}

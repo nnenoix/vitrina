@@ -5,6 +5,8 @@
 var SHEET_ID = '1tFlNbtrdMR4I_06VyCr22guCmzBJRONtNgZ6MsBIf-s';            // id таблицы из её адреса: docs.google.com/spreadsheets/d/<ID>/edit
 var SHEET_TAB = 'Участники';  // имя листа
 var FALLBACK = 'data/sample.csv';
+// приём заявок: веб-приложение Apps Script в той же таблице (письмо админу + лист «Заявки»)
+var FORM_URL = 'https://script.google.com/macros/s/AKfycbyFEDAeESRqGfBaNWtjdPV9q__ClBhnM2XMJ9HLn8c3iv09IDpl8TAyDP9_lTxKk1LJ/exec';
 
 var CATS = {
   'Академические достижения': 'acad',
@@ -124,14 +126,34 @@ document.addEventListener('DOMContentLoaded', function () {
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModals(); });
 
   var form = document.querySelector('.rec-form');
-  form.querySelector('.next-url').value = location.href.split('#')[0].split('?')[0] + '?sent=1';
-  form.addEventListener('submit', function (e) {
-    var f = form.querySelector('input[type=file]').files[0];
-    if (f && f.size > 5 * 1024 * 1024) { e.preventDefault(); alert('Файл больше 5 МБ. Лучше пришлите ссылку.'); }
-  });
-  if (/[?&]sent=1/.test(location.search)) {
-    var t = document.getElementById('toast'); t.hidden = false;
-    setTimeout(function () { t.hidden = true; }, 5000);
-    history.replaceState(null, '', location.pathname);
+  var err = form.querySelector('.form-err'), btn = form.querySelector('button[type=submit]');
+  function fail(msg) { err.textContent = msg; err.hidden = false; }
+  function readFile(f) {
+    return new Promise(function (res, rej) {
+      if (!f) return res(null);
+      var r = new FileReader();
+      r.onload = function () { res({ name: f.name, type: f.type, data: String(r.result).split(',')[1] }); };
+      r.onerror = rej; r.readAsDataURL(f);
+    });
   }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); err.hidden = true;
+    var fd = new FormData(form), f = form.querySelector('input[type=file]').files[0];
+    if (!fd.get('fio').trim() || !fd.get('cat') || !fd.get('desc').trim()) return fail('Заполните ФИО, категорию и описание.');
+    if (f && f.size > 5 * 1024 * 1024) return fail('Файл больше 5 МБ. Лучше пришлите ссылку.');
+    btn.disabled = true; btn.textContent = 'Отправляем…';
+    readFile(f).then(function (file) {
+      var body = new URLSearchParams();
+      ['fio', 'cat', 'desc', 'link', '_honey'].forEach(function (k) { body.append(k, fd.get(k) || ''); });
+      if (file) { body.append('fileName', file.name); body.append('fileType', file.type); body.append('fileData', file.data); }
+      return fetch(FORM_URL, { method: 'POST', body: body });
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j.ok) throw new Error(j.error || 'ошибка');
+      form.reset(); closeModals();
+      var t = document.getElementById('toast'); t.hidden = false;
+      setTimeout(function () { t.hidden = true; }, 5000);
+    }).catch(function () {
+      fail('Не получилось отправить. Проверьте интернет и попробуйте ещё раз.');
+    }).then(function () { btn.disabled = false; btn.textContent = 'Отправить заявку'; });
+  });
 });
